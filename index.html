@@ -72,8 +72,7 @@
         let question = prompt("Think of a question in your mind and click OK to pick a card...");
         let selectedCard = tarotCards[Math.floor(Math.random() * tarotCards.length)];
       
-        // Display the selected card and its meaning to the user
-        console.log(`The card you picked is: ${selectedCard}`);
+        // Display the selected card and its meaning to the user 
         let meaning = meanings[selectedCard] || "Sorry, we couldn't find the meaning of the selected card.";
         console.log(meaning);
         document.getElementById("result").textContent = `The card you picked is: ${selectedCard}\n${meaning}`;
