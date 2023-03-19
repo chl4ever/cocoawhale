@@ -50,7 +50,7 @@
         "The Chariot":"7号战车牌。卷起来！奋斗！勇往直前！努力奋斗ing的一般都是这个牌",
         "Strength":"8号勇气。和老板或者环境力量周旋。以柔克刚，要温柔坚定啊",
         "The Hermit":"9号牌隐士。社恐自闭牌。独立，反省，自闭，或者刻薄、浮躁、神经质",
-        "The Wheel of Fortune":"10号牌命运之轮。可能要出差。该发生的都会发生，转变，转折点。或者拒绝改变。",
+        "Wheel of Fortune":"10号牌命运之轮。可能要出差。该发生的都会发生，转变，转折点。或者拒绝改变。",
         "Justice":"11号正义牌。以前做的事情都会昭告天下。公正，公平，真相，得到应有的回报",
         "The Hanged Man":"12号倒吊人。STUCK!,进退两难，换个视角看问题。",
         "Death": "13号死神。一个结束和新生。",
@@ -62,21 +62,38 @@
         "The Sun":"19号太阳。最好的牌之一。也可能要有个孩子了。",
         "Judgment":"20号审判。判决，好运，或者就是考试/答辩/presentation等。",
         "The World":"21号世界。最后一张牌。结束，完美结束，愿望达成，project over"
-
       };
       
       // Define the pickCard function
-      function pickCard() {
+        function pickCard() {
+        let randomIndex = Math.floor(Math.random() * tarotCards.length);
+        let selectedCard = tarotCards[randomIndex];
+        let cardMeaning = meanings[selectedCard];
+        let resultElement = document.getElementById("result");
+        resultElement.innerHTML = `You picked the card ${selectedCard}.<br> 
+        The meaning of this card is: ${cardMeaning}`; return selectedCard;
+
         document.getElementById("result").textContent = ""; // Clear the previous result
         // Ask the user to think of a question and pick a card
-        let question = prompt("Think of a question in your mind and click OK to pick a card...");
-        let selectedCard = tarotCards[Math.floor(Math.random() * tarotCards.length)];
       
-        // Display the selected card and its meaning to the user 
-        let meaning = meanings[selectedCard] || "Sorry, we couldn't find the meaning of the selected card.";
-        console.log(meaning);
-        document.getElementById("result").textContent = `The card you picked is: ${selectedCard}\n${meaning}`;
-      }
+       // Display the selected card to the user
+       console.log(`The card you picked is: ${selectedCard.name}`);
+            
+            // Provide the meaning of the card to the user
+            console.log(`Meaning: ${selectedCard.meaning}`);
+            
+            // Display the card name and meaning to the user
+            let resultDiv = document.getElementById("result");
+            let cardDiv = document.createElement("div");
+            let cardImage = document.createElement("img");
+            cardImage.src = selectedCard.image;
+            cardImage.alt = selectedCard.name;
+            cardImage.style.width = "200px";
+            cardImage.style.height = "300px";
+            cardDiv.appendChild(cardImage);
+            cardDiv.innerHTML += `<br>The card you picked is: ${selectedCard.name}<br>Meaning: ${selectedCard.meaning}<br><br>`;
+            resultDiv.appendChild(cardDiv);
+        }
       </script>
 
   </body>    
